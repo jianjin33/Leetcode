@@ -59,7 +59,7 @@ public:
         {
             int temp = nums[i];
             int j = i;
-            while (j > 0  && temp < nums[j - 1])
+            while (j > 0 && temp < nums[j - 1])
             {
                 nums[j] = nums[j - 1];
                 j--;
@@ -73,21 +73,63 @@ public:
     /**
      * 桶排序 68 ms
      */
-    vector<int> bucketSort(vector<int>& nums) {
+    vector<int> bucketSort(vector<int> &nums)
+    {
         int low = *min_element(nums.begin(), nums.end());
         int high = *max_element(nums.begin(), nums.end());
         int n = high - low + 1;
         vector<int> buckets(n);
-        for (auto x : nums) ++buckets[x - low];
+        for (auto x : nums)
+            ++buckets[x - low];
         vector<int> res;
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < buckets[i]; ++j) {
+        for (int i = 0; i < n; ++i)
+        {
+            for (int j = 0; j < buckets[i]; ++j)
+            {
                 res.push_back(i + low);
             }
         }
         return res;
     }
 
+    /** 
+     * 堆排序 大小顶堆 72 ms
+     */
+    void heapify(vector<int> &nums, int i, int len)
+    {
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        int largest = i; // 假设i大
+
+        // i分别与它的左右子节点比大小
+        if (left < len && nums[left] > nums[largest])
+            largest = left;
+
+        if (right < len && nums[right] > nums[largest])
+            largest = right;
+
+        if (largest != i)
+        {
+            swap(nums[largest], nums[i]);
+            heapify(nums, largest, len);
+        }
+    }
+
+    vector<int> heapSort(vector<int> &nums)
+    {
+        // 构建大顶堆
+        int len = nums.size();
+        for (int i = nums.size() / 2; i >= 0; i--)
+            heapify(nums, i, len);
+
+        for (int i = len - 1; i > 0; i--)
+        {
+            // 顶部和最后一个最大值交换，在做下沉操作
+            swap(nums[0], nums[i]);
+            heapify(nums, 0, i);
+        }
+        return nums;
+    }
 
     vector<int> sortArray(vector<int> &nums)
     {
@@ -95,9 +137,10 @@ public:
         {
             return {};
         }
-        
+
         // return bubbleSort(nums);
         // return insertSort(nums);
-        return bucketSort(nums);
+        // return bucketSort(nums);
+        return heapSort(nums);
     }
 };
