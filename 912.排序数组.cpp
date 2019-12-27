@@ -131,6 +131,71 @@ public:
         return nums;
     }
 
+    vector<int> quickSort(vector<int> &nums, int L, int R)
+    {
+        int i = L;
+        int j = R;
+        int pivot = nums[(L + R) / 2];
+
+        while (i <= j)
+        {
+            while (pivot > nums[i])
+            {
+                i++;
+            }
+            while (pivot < nums[j])
+            {
+                j--;
+            }
+
+            if (i <= j)
+            {
+                swap(nums[i], nums[j]);
+                i++;
+                j--;
+            }
+        }
+
+        if (L < j)
+        {
+            quickSort(nums, L, j);
+        }
+
+        if (R > i)
+        {
+            quickSort(nums, i, R);
+        }
+
+        return nums;
+    }
+
+    vector<int> quickSortV2(vector<int> &nums, int l, int r){
+        if (l >= r)
+            return nums;
+
+        int t = nums[l + (r - l) / 2];
+        int tl = l;
+        int tr = r;
+        for (int i = tl; i <= tr;)
+        {
+            if (nums[i] == t)
+            {
+                ++i;
+            }
+            else if (nums[i] < t)
+            {
+                swap(nums[i++], nums[tl++]);
+            }
+            else
+            {
+                swap(nums[i], nums[tr--]);
+            }
+        }
+        quickSort(nums, l, tl - 1);
+        quickSort(nums, tr + 1, r);
+        return nums;
+    }
+
     vector<int> sortArray(vector<int> &nums)
     {
         if (nums.empty())
@@ -141,6 +206,8 @@ public:
         // return bubbleSort(nums);
         // return insertSort(nums);
         // return bucketSort(nums);
-        return heapSort(nums);
+        // return heapSort(nums);
+        //return quickSort(nums, 0, nums.size()-1);
+        return quickSortV2(nums, 0, nums.size()-1);
     }
 };

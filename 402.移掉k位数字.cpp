@@ -31,13 +31,15 @@ public:
                 remain.pop_back();
                 k--;
             }
+
+            // x ＝ 0 时，肯定比高位小，一定要push进去，但如果同时remain是空的话，0就不要push进去，此时k也不变 201 k=1 时 结果为01=1
             if (x != 0 || remain.size() != 0)
             {
                 remain.push_back(x);
             }
         }
 
-        // 依旧可以删除数字
+        // 依旧可以删除数字 4321这种数 会一直进不去上面的while 就不会pop
         while (remain.size() != 0 && k > 0)
         {
             remain.pop_back();
