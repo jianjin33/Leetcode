@@ -169,7 +169,8 @@ public:
         return nums;
     }
 
-    vector<int> quickSortV2(vector<int> &nums, int l, int r){
+    vector<int> quickSortV2(vector<int> &nums, int l, int r)
+    {
         if (l >= r)
             return nums;
 
@@ -191,8 +192,27 @@ public:
                 swap(nums[i], nums[tr--]);
             }
         }
-        quickSort(nums, l, tl - 1);
-        quickSort(nums, tr + 1, r);
+        quickSortV2(nums, l, tl - 1);
+        quickSortV2(nums, tr + 1, r);
+        return nums;
+    }
+
+    vector<int> shellSort(vector<int> &nums)
+    {
+        int length = nums.size();
+        for (int step = length / 2; step > 0; step = step /= 2)
+        {
+            for (int j = step; j < length; j++)
+            {
+                int temp = nums[j], pre = j;
+                while (pre - step >= 0 && temp < nums[pre - step])
+                {
+                    nums[pre] = nums[pre - step];
+                    pre -= step;
+                }
+                nums[pre] = temp;
+            }
+        }
         return nums;
     }
 
@@ -208,6 +228,7 @@ public:
         // return bucketSort(nums);
         // return heapSort(nums);
         //return quickSort(nums, 0, nums.size()-1);
-        return quickSortV2(nums, 0, nums.size()-1);
+        // return quickSortV2(nums, 0, nums.size()-1);
+        return shellSort(nums);
     }
 };
