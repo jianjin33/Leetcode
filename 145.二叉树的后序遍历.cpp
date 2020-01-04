@@ -59,13 +59,13 @@ private:
             if (cur->right && cur->right != last)
             {
                 root = cur->right;
-            }else
+            }
+            else
             {
                 nodes.push_back(cur->val);
                 todo.pop();
                 last = cur; // 加入了vector之后记录该结点
             }
-            
         }
     }
 

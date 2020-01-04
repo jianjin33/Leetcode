@@ -17,7 +17,7 @@ public:
             // 注意 i-- 在for循环结束后才会执行
             nums1[tar--] = i >= 0 && nums1[i] > nums2[j] ? nums1[i--] : nums2[j--];
         }
-        
+    
     }
 };
 
