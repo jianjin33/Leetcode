@@ -216,6 +216,42 @@ public:
         return nums;
     }
 
+    void merge(vector<int> &nums, int left, int mid, int right)
+    {
+        vector<int> temp;
+        int i = 0;
+        int p1 = left;
+        int p2 = mid + 1;
+        while (p1 <= mid && p2 <= right)
+        {
+            temp[i++] = nums[p1] > nums[p2] ? nums[p2++] : nums[p1++];
+        }
+
+        while (p1 <= mid)
+            temp[i++] = nums[p1++];
+
+        while (p2 <= right)
+            temp[i++] = nums[p2++];
+
+        for (int i = 0; i < temp.size(); i++)
+        {
+            nums[left + i] = temp[i];
+        }
+    }
+
+    void mergeSort(vector<int> &nums, int left, int right)
+    {
+        if (left == right)
+        {
+            return;
+        }
+        int mid = left + ((right - left) >> 1);
+        mergeSort(nums, left, mid);
+        mergeSort(nums, mid + 1, right);
+        merge(nums, left, mid, right);
+        return;
+    }
+
     vector<int> sortArray(vector<int> &nums)
     {
         if (nums.empty())
@@ -227,8 +263,10 @@ public:
         // return insertSort(nums);
         // return bucketSort(nums);
         // return heapSort(nums);
-        //return quickSort(nums, 0, nums.size()-1);
+        // return quickSort(nums, 0, nums.size()-1);
         // return quickSortV2(nums, 0, nums.size()-1);
-        return shellSort(nums);
+        // return shellSort(nums);
+        mergeSort(nums, 0, nums.size() - 1);
+        return nums;
     }
 };
