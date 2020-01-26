@@ -6,6 +6,7 @@
 
 // @lc code=start
 #include <string>
+#include <limits.h>
 
 class Solution
 {
@@ -14,7 +15,7 @@ public:
     {
         long result = 0;
         int indicator = 1;
-        for (size_t i = 0; i < str.size();)
+        for (int i = 0; i < str.size();)
         {
             i = str.find_first_not_of(' ');
             if (str[i] == '-' || str[i] == '+')
@@ -30,6 +31,8 @@ public:
             }
             return result * indicator;
         }
+
+        return 0;
     }
 };
 // @lc code=end
