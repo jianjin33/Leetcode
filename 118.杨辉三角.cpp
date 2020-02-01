@@ -22,12 +22,13 @@ public:
     {
         vector<vector<int>> result;
         vector<int> item;
+
         for (size_t i = 0; i < numRows; i++)
         {
             item.push_back(1);
             for (int j = i - 1; j > 0; j--)
             {
-                item[j] = item[j - 1] + item[j];
+                item[j] = item[j] + item[j - 1];
             }
             result.push_back(item);
         }

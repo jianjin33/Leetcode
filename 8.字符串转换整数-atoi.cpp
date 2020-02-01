@@ -17,7 +17,11 @@ public:
         int indicator = 1;
         for (int i = 0; i < str.size();)
         {
-            i = str.find_first_not_of(' ');
+            //i = str.find_first_not_of(' '); // 这种方式找第一个，如果全是空的字符串，会溢出报错
+            if(str[i] == ' '){
+                i++;
+                continue;
+            }
             if (str[i] == '-' || str[i] == '+')
                 indicator = (str[i++] == '-') ? -1 : 1;
 

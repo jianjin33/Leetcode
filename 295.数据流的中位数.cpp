@@ -33,6 +33,23 @@ public:
             return;
         }
 
+        /*        if (num > smallQueue.top())
+            smallQueue.push(num);
+        else
+            bigQueue.push(num);
+
+        if (!bigQueue.empty() && bigQueue.size() - smallQueue.size() > 1)
+        {
+            smallQueue.push(bigQueue.top());
+            bigQueue.pop();
+        }
+
+        if (smallQueue.size() - bigQueue.size() > 1)
+        {
+            bigQueue.push(smallQueue.top());
+            smallQueue.pop();
+        } */
+
         if (smallQueue.size() > bigQueue.size())
         {
             if (num > smallQueue.top())
