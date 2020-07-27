@@ -2,6 +2,10 @@
  * @lc app=leetcode.cn id=15 lang=cpp
  *
  * [15] 三数之和
+ * 第一步：为避免重复，所以先进行一次排序，再遍历
+ * 第二步：依次以 -nums[i]作为结果，分别从i+1向后开始
+ *  和 nums.size()-1向前开始，查询两数之和为 -nums[i]；
+ * 
  */
 #include <vector>
 #include <list>
@@ -20,8 +24,7 @@ public:
         for (int i = 0; i < num.size(); i++)
         {
             int target = -num[i];
-            int front = i + 1;
-            int back = num.size() - 1;
+            int front = i + 1, back = num.size() - 1;
 
             while (front < back)
             {
@@ -43,19 +46,17 @@ public:
                     triplet[2] = num[back];
                     res.push_back(triplet);
 
-                    // Processing duplicates of Number 2
-                    // Rolling the front pointer to the next different number forwards
+                    // 继续下一个
                     while (front < back && num[front] == triplet[1])
                         front++;
 
-                    // Processing duplicates of Number 3
-                    // Rolling the back pointer to the next different number backwards
+                    // 继续下一个
                     while (front < back && num[back] == triplet[2])
                         back--;
                 }
             }
 
-            // Processing duplicates of Number 1
+            // 略过重复元素
             while (i + 1 < num.size() && num[i + 1] == num[i])
                 i++;
         }
