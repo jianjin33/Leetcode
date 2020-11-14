@@ -59,6 +59,8 @@
         "mutex": "cpp",
         "ratio": "cpp",
         "set": "cpp",
-        "system_error": "cpp"
+        "system_error": "cpp",
+        "__functional_03": "cpp",
+        "optional": "cpp"
     }
 }
