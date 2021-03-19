@@ -61,6 +61,13 @@
         "set": "cpp",
         "system_error": "cpp",
         "__functional_03": "cpp",
-        "optional": "cpp"
+        "optional": "cpp",
+        "__errc": "cpp",
+        "__node_handle": "cpp",
+        "__nullptr": "cpp",
+        "__string": "cpp",
+        "__threading_support": "cpp",
+        "array": "cpp",
+        "string_view": "cpp"
     }
 }
