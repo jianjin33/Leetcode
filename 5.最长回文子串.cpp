@@ -24,7 +24,7 @@ public:
                 end++;
             // 说明end之前都是重复字符串
             i = end + 1;
-            while (start - 1 >= 0 && end + 1 <= size && s[start-1] == s[end+1])
+            while (start - 1 >= 0 && end + 1 < size && s[start-1] == s[end+1])
             {
                 start--;
                 end++;
